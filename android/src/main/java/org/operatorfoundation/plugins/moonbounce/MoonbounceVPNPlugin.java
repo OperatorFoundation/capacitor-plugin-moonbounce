@@ -19,6 +19,10 @@ public class MoonbounceVPNPlugin extends Plugin
 
     public String stopVPNReturnValueKey = "vpnStopped";
     public String startVPNReturnValueKey = "vpnStarted";
+    public String startVPNIPKey = "serverIP";
+    public String startVPNPortKey = "serverPort";
+    public String startVPNDisallowedAppKey = "disallowedApp";
+    public String startVPNExcludeIPKey = "excludeIP";
 
     @PluginMethod
     public void echo(PluginCall call) {
@@ -29,20 +33,29 @@ public class MoonbounceVPNPlugin extends Plugin
     }
 
     @PluginMethod
-    public ComponentName startVPN(PluginCall call)
+    public void startVPN(PluginCall call)
     {
-        String ipAddress = call.getString("ipString");
-        Integer port = Integer.valueOf(call.getString("port"));
+        JSObject returnValue = new JSObject();
+        String ipAddress = call.getString(startVPNIPKey);
+        String portString = call.getString(startVPNPortKey);
+
+        if (portString == null)
+        {
+            returnValue.put(startVPNReturnValueKey, false);
+            call.resolve(returnValue);
+            return;
+        }
+
+        Integer port = Integer.valueOf(portString);
+        String disallowedApp = call.getString(startVPNDisallowedAppKey);
+        String excludeIP = call.getString(startVPNExcludeIPKey);
         Context context = getContext();
 
-        vpnService = new MoonbounceJava(context, ipAddress, port, "", "");
+        vpnService = new MoonbounceJava(context, ipAddress, port, disallowedApp, excludeIP);
         ComponentName serviceName = vpnService.startVPN();
 
-        JSObject returnValue = new JSObject();
         returnValue.put(startVPNReturnValueKey, serviceName != null);
         call.resolve(returnValue);
-
-        return serviceName;
     }
 
     @PluginMethod
