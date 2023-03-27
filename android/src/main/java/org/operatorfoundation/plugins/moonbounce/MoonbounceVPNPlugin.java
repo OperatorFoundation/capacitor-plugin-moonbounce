@@ -59,7 +59,7 @@ public class MoonbounceVPNPlugin extends Plugin
     }
 
     @PluginMethod
-    public Boolean stopVPN(PluginCall call)
+    public void stopVPN(PluginCall call)
     {
         Boolean serviceStopped;
 
@@ -75,7 +75,5 @@ public class MoonbounceVPNPlugin extends Plugin
         JSObject returnValue = new JSObject();
         returnValue.put(stopVPNReturnValueKey, serviceStopped);
         call.resolve(returnValue);
-
-        return serviceStopped;
     }
 }
