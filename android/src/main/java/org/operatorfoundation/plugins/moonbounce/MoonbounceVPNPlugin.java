@@ -15,14 +15,7 @@ import org.operatorfoundation.moonbouncevpnservice.*;
 public class MoonbounceVPNPlugin extends Plugin
 {
     private MoonbounceVPN implementation = new MoonbounceVPN();
-    private MoonbounceJava vpnService;
 
-    public String stopVPNReturnValueKey = "vpnStopped";
-    public String startVPNReturnValueKey = "vpnStarted";
-    public String startVPNIPKey = "serverIP";
-    public String startVPNPortKey = "serverPort";
-    public String startVPNDisallowedAppKey = "disallowedApp";
-    public String startVPNExcludeIPKey = "excludeIP";
 
     @PluginMethod
     public void echo(PluginCall call) {
@@ -36,44 +29,30 @@ public class MoonbounceVPNPlugin extends Plugin
     public void startVPN(PluginCall call)
     {
         JSObject returnValue = new JSObject();
-        String ipAddress = call.getString(startVPNIPKey);
-        String portString = call.getString(startVPNPortKey);
+        String ipAddress = call.getString(implementation.startVPNIPKey);
+        String portString = call.getString(implementation.startVPNPortKey);
 
         if (portString == null)
         {
-            returnValue.put(startVPNReturnValueKey, false);
+            returnValue.put(implementation.startVPNReturnValueKey, false);
             call.resolve(returnValue);
             return;
         }
 
         Integer port = Integer.valueOf(portString);
-        String disallowedApp = call.getString(startVPNDisallowedAppKey);
-        String excludeIP = call.getString(startVPNExcludeIPKey);
+        String disallowedApp = call.getString(implementation.startVPNDisallowedAppKey);
+        String excludeIP = call.getString(implementation.startVPNExcludeIPKey);
         Context context = getContext();
 
-        vpnService = new MoonbounceJava(context, ipAddress, port, disallowedApp, excludeIP);
-        ComponentName serviceName = vpnService.startVPN();
-
-        returnValue.put(startVPNReturnValueKey, serviceName != null);
+        returnValue.put(implementation.startVPNReturnValueKey, implementation.startVPN(context, ipAddress, port, disallowedApp, excludeIP));
         call.resolve(returnValue);
     }
 
     @PluginMethod
     public void stopVPN(PluginCall call)
     {
-        Boolean serviceStopped;
-
-        if (vpnService != null)
-        {
-            serviceStopped = vpnService.stopVPN();
-        }
-        else
-        {
-            serviceStopped = true;
-        }
-
         JSObject returnValue = new JSObject();
-        returnValue.put(stopVPNReturnValueKey, serviceStopped);
+        returnValue.put(implementation.stopVPNReturnValueKey, implementation.stopVPN());
         call.resolve(returnValue);
     }
 }
