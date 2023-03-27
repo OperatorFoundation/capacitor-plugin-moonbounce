@@ -14,6 +14,8 @@ npx cap sync
 <docgen-index>
 
 * [`echo(...)`](#echo)
+* [`startVPN(...)`](#startvpn)
+* [`stopVPN()`](#stopvpn)
 
 </docgen-index>
 
@@ -31,6 +33,32 @@ echo(options: { value: string; }) => Promise<{ value: string; }>
 | **`options`** | <code>{ value: string; }</code> |
 
 **Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+
+--------------------
+
+
+### startVPN(...)
+
+```typescript
+startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }) => Promise<{ vpnStarted: boolean; }>
+```
+
+| Param         | Type                                                                                             |
+| ------------- | ------------------------------------------------------------------------------------------------ |
+| **`options`** | <code>{ serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }</code> |
+
+**Returns:** <code>Promise&lt;{ vpnStarted: boolean; }&gt;</code>
+
+--------------------
+
+
+### stopVPN()
+
+```typescript
+stopVPN() => Promise<{ vpnStopped: boolean; }>
+```
+
+**Returns:** <code>Promise&lt;{ vpnStopped: boolean; }&gt;</code>
 
 --------------------
 
