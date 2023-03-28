@@ -12,19 +12,12 @@
  public class MoonbounceVPN
  {
      public MoonbounceJava vpnService;
-
      public String stopVPNReturnValueKey = "vpnStopped";
      public String startVPNReturnValueKey = "vpnStarted";
      public String startVPNIPKey = "serverIP";
      public String startVPNPortKey = "serverPort";
      public String startVPNDisallowedAppKey = "disallowedApp";
      public String startVPNExcludeIPKey = "excludeIP";
-
-
-     public String echo(String value) {
-         Log.i("Echo", value);
-         return value;
-     }
 
      public Boolean startVPN(Context context, String ipAddress, Integer port, String disallowedApp, String excludeIP)
      {

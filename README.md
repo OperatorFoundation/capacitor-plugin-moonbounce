@@ -13,7 +13,6 @@ npx cap sync
 
 <docgen-index>
 
-* [`echo(...)`](#echo)
 * [`startVPN(...)`](#startvpn)
 * [`stopVPN()`](#stopvpn)
 
@@ -22,32 +21,17 @@ npx cap sync
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### echo(...)
-
-```typescript
-echo(options: { value: string; }) => Promise<{ value: string; }>
-```
-
-| Param         | Type                            |
-| ------------- | ------------------------------- |
-| **`options`** | <code>{ value: string; }</code> |
-
-**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
-
---------------------
-
-
 ### startVPN(...)
 
 ```typescript
-startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }) => Promise<{ vpnStarted: boolean; }>
+startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }) => boolean
 ```
 
 | Param         | Type                                                                                             |
 | ------------- | ------------------------------------------------------------------------------------------------ |
 | **`options`** | <code>{ serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }</code> |
 
-**Returns:** <code>Promise&lt;{ vpnStarted: boolean; }&gt;</code>
+**Returns:** <code>boolean</code>
 
 --------------------
 
@@ -55,10 +39,10 @@ startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string;
 ### stopVPN()
 
 ```typescript
-stopVPN() => Promise<{ vpnStopped: boolean; }>
+stopVPN() => boolean
 ```
 
-**Returns:** <code>Promise&lt;{ vpnStopped: boolean; }&gt;</code>
+**Returns:** <code>boolean</code>
 
 --------------------
 

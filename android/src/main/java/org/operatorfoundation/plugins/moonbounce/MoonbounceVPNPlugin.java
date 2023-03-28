@@ -16,15 +16,6 @@ public class MoonbounceVPNPlugin extends Plugin
 {
     private MoonbounceVPN implementation = new MoonbounceVPN();
 
-
-    @PluginMethod
-    public void echo(PluginCall call) {
-        String value = call.getString("value");
-        JSObject ret = new JSObject();
-        ret.put("value", implementation.echo(value));
-        call.resolve(ret);
-    }
-
     @PluginMethod
     public void startVPN(PluginCall call)
     {

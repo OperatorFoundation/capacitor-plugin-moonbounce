@@ -9,10 +9,10 @@ import Capacitor
 public class MoonbounceVPNPlugin: CAPPlugin {
     private let implementation = MoonbounceVPN()
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
-    }
+    // @objc func echo(_ call: CAPPluginCall) {
+    //     let value = call.getString("value") ?? ""
+    //     call.resolve([
+    //         "value": implementation.echo(value)
+    //     ])
+    // }
 }
