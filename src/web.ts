@@ -9,7 +9,7 @@ export class MoonbounceVPNWeb extends WebPlugin implements MoonbounceVPNPlugin
     super();
   }
 
-  startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }): boolean
+  async startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }): Promise<{ started: boolean }>
   {
     console.log('startVPN was called with the following options:');
     console.log('server IP: ' + options.serverIP);
@@ -17,13 +17,13 @@ export class MoonbounceVPNWeb extends WebPlugin implements MoonbounceVPNPlugin
     console.log('disallowedApp: ' + options.disallowedApp);
     console.log('exclude IP: ' + options.excludeIP);
     console.log('MoonbounceVPN is not available for web.');
-    return false;
+    return { started: false };
   }
 
-  stopVPN(): boolean
+  async stopVPN(): Promise<{ stopped: boolean }>
   {
     console.log('stopVPN was called');
     console.log('MoonbounceVPN is not available for web.');
-    return false;
+    return { stopped: false };
   }
 }
