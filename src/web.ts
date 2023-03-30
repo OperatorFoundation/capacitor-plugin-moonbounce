@@ -1,16 +1,18 @@
-
 import { WebPlugin } from '@capacitor/core';
+
 import type { MoonbounceVPNPlugin } from './definitions';
 
-export class MoonbounceVPNWeb extends WebPlugin implements MoonbounceVPNPlugin 
-{
-  constructor() 
-  {
+export class MoonbounceVPNWeb extends WebPlugin implements MoonbounceVPNPlugin {
+  constructor() {
     super();
   }
 
-  async startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }): Promise<{ started: boolean }>
-  {
+  async startVPN(options: {
+    serverIP: string;
+    serverPort: number;
+    disallowedApp: string;
+    excludeIP: string;
+  }): Promise<{ started: boolean }> {
     console.error('startVPN was called with the following options:');
     console.error('server IP: ' + options.serverIP);
     console.error('server port: ' + options.serverPort);
@@ -20,8 +22,7 @@ export class MoonbounceVPNWeb extends WebPlugin implements MoonbounceVPNPlugin
     return { started: false };
   }
 
-  async stopVPN(): Promise<{ stopped: boolean }>
-  {
+  async stopVPN(): Promise<{ stopped: boolean }> {
     console.error('stopVPN was called');
     console.error('MoonbounceVPN is not available for web.');
     return { stopped: false };

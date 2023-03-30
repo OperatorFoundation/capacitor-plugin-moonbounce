@@ -1,0 +1,7 @@
+{
+  "name": "capacitor-plugin-moonbounce",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}

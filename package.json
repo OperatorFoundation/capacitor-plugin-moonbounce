@@ -1,6 +1,6 @@
 {
   "name": "capacitor-plugin-moonbounce",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A Capacitor plugin for the Moonbounce VPN library.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -41,11 +41,12 @@
     "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "ionic:build": "npm run build"
   },
   "devDependencies": {
     "@capacitor/android": "^4.0.0",
-    "@capacitor/core": "^4.7.0",
+    "@capacitor/core": "4.7.1",
     "@capacitor/docgen": "^0.0.18",
     "@capacitor/ios": "^4.0.0",
     "@ionic/eslint-config": "^0.3.0",
@@ -74,5 +75,12 @@
     "android": {
       "src": "android"
     }
+  },
+  "dependencies": {
+    "@capacitor/app": "4.1.1",
+    "@capacitor/cli": "4.7.1",
+    "@capacitor/haptics": "4.1.0",
+    "@capacitor/keyboard": "4.1.1",
+    "@capacitor/status-bar": "4.1.1"
   }
 }
