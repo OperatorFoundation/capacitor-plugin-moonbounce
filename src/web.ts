@@ -11,19 +11,19 @@ export class MoonbounceVPNWeb extends WebPlugin implements MoonbounceVPNPlugin
 
   async startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }): Promise<{ started: boolean }>
   {
-    console.log('startVPN was called with the following options:');
-    console.log('server IP: ' + options.serverIP);
-    console.log('server port: ' + options.serverPort);
-    console.log('disallowedApp: ' + options.disallowedApp);
-    console.log('exclude IP: ' + options.excludeIP);
-    console.log('MoonbounceVPN is not available for web.');
+    console.error('startVPN was called with the following options:');
+    console.error('server IP: ' + options.serverIP);
+    console.error('server port: ' + options.serverPort);
+    console.error('disallowedApp: ' + options.disallowedApp);
+    console.error('exclude IP: ' + options.excludeIP);
+    console.error('MoonbounceVPN is not available for web.');
     return { started: false };
   }
 
   async stopVPN(): Promise<{ stopped: boolean }>
   {
-    console.log('stopVPN was called');
-    console.log('MoonbounceVPN is not available for web.');
+    console.error('stopVPN was called');
+    console.error('MoonbounceVPN is not available for web.');
     return { stopped: false };
   }
 }

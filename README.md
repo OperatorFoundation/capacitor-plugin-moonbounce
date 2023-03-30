@@ -24,14 +24,14 @@ npx cap sync
 ### startVPN(...)
 
 ```typescript
-startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }) => boolean
+startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }) => Promise<{ started: boolean; }>
 ```
 
 | Param         | Type                                                                                             |
 | ------------- | ------------------------------------------------------------------------------------------------ |
 | **`options`** | <code>{ serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }</code> |
 
-**Returns:** <code>boolean</code>
+**Returns:** <code>Promise&lt;{ started: boolean; }&gt;</code>
 
 --------------------
 
@@ -39,10 +39,10 @@ startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string;
 ### stopVPN()
 
 ```typescript
-stopVPN() => boolean
+stopVPN() => Promise<{ stopped: boolean; }>
 ```
 
-**Returns:** <code>boolean</code>
+**Returns:** <code>Promise&lt;{ stopped: boolean; }&gt;</code>
 
 --------------------
 
