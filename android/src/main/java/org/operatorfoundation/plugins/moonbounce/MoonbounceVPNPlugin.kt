@@ -10,29 +10,44 @@ import kotlinx.coroutines.*
 @CapacitorPlugin(name = "MoonbounceVPN")
 class MoonbounceVPNPlugin : Plugin()
 {
-    private val implementation = MoonbounceVPNCommunicator()
+    private lateinit var implementation: MoonbounceVPNCommunicator
+    private var callID: String? = null
+
+    override fun load() {
+        implementation = MoonbounceVPNCommunicator()
+    }
 
     @PluginMethod
     fun startVPN(call: PluginCall)
     {
+        bridge.saveCall(call)
+        callID = call.callbackId
+
         val returnValue = JSObject()
         val ipAddress = call.getString(implementation.startVPNIPKey)
         val portString = call.getString(implementation.startVPNPortKey)
 
         if (portString == null || ipAddress == null) {
             returnValue.put(implementation.startVPNReturnValueKey, false)
+
+            bridge.releaseCall(call)
+            callID = null
             call.resolve(returnValue)
-            return
         }
+        else
+        {
+            val port = Integer.valueOf(portString)
+            val disallowedApp = call.getString(implementation.startVPNDisallowedAppKey)
+            val excludeIP = call.getString(implementation.startVPNExcludeIPKey)
+            val context = context
+            val started = implementation.startVPN(context, ipAddress, port, disallowedApp, excludeIP)
 
-        val port = Integer.valueOf(portString)
-        val disallowedApp = call.getString(implementation.startVPNDisallowedAppKey)
-        val excludeIP = call.getString(implementation.startVPNExcludeIPKey)
-        val context = context
-        val started = implementation.startVPN(context, ipAddress, port, disallowedApp, excludeIP)
+            returnValue.put( implementation.startVPNReturnValueKey, started )
 
-        returnValue.put( implementation.startVPNReturnValueKey, started )
-        call.resolve(returnValue)
+            bridge.releaseCall(call)
+            callID = null
+            call.resolve(returnValue)
+        }
     }
 
     @PluginMethod

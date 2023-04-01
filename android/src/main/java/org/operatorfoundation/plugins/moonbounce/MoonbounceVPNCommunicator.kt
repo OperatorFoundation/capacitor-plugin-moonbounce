@@ -1,13 +1,16 @@
 package org.operatorfoundation.plugins.moonbounce
 
+import android.app.Activity
 import android.content.Context
+import android.net.VpnService
+import androidx.activity.result.contract.ActivityResultContracts
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
-import org.operatorfoundation.moonbouncevpnservice.MoonbounceJava
+import org.operatorfoundation.moonbouncevpnservice.MoonbounceKotlin
 
 class MoonbounceVPNCommunicator {
-    var vpnService: MoonbounceJava? = null
+    var vpnService: MoonbounceKotlin? = null
     var stopVPNReturnValueKey = "vpnStopped"
     var startVPNReturnValueKey = "vpnStarted"
     var startVPNIPKey = "serverIP"
@@ -22,10 +25,14 @@ class MoonbounceVPNCommunicator {
         disallowedApp: String?,
         excludeIP: String?
     ): Boolean = runBlocking {
-
-        vpnService = MoonbounceJava(context, ipAddress, port, disallowedApp, excludeIP)
+        vpnService = MoonbounceKotlin(context, ipAddress, port, disallowedApp, excludeIP)
         val serviceName = async(Dispatchers.Default) { vpnService!!.startVPN() }
         serviceName.await() != null
+    }
+
+    fun prepareForVPNService()
+    {
+
     }
 
     fun stopVPN(): Boolean {
