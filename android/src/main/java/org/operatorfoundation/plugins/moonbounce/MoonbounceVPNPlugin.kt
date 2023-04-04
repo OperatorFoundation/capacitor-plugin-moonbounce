@@ -5,7 +5,6 @@ import com.getcapacitor.*
 import com.getcapacitor.annotation.CapacitorPlugin
 import com.getcapacitor.annotation.Permission
 import com.getcapacitor.annotation.PermissionCallback
-import kotlinx.coroutines.*
 
 const val vpnPermissionAlias = "vpnConnection"
 const val vpnPluginName = "MoonbounceVPN"
@@ -14,9 +13,10 @@ const val vpnPluginName = "MoonbounceVPN"
     name = vpnPluginName,
     permissions = arrayOf(
         Permission( alias = vpnPermissionAlias, strings = arrayOf(
-            Manifest.permission.BIND_VPN_SERVICE)
+            Manifest.permission.INTERNET, Manifest.permission.ACCESS_NETWORK_STATE)
         ))
 )
+
 class MoonbounceVPNPlugin : Plugin()
 {
     private var implementation = MoonbounceVPNCommunicator()

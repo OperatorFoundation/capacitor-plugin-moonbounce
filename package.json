@@ -1,6 +1,6 @@
 {
   "name": "capacitor-plugin-moonbounce",
-  "version": "0.0.13",
+  "version": "0.1.0",
   "description": "A Capacitor plugin for the Moonbounce VPN library.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
