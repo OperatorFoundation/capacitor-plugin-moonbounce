@@ -13,25 +13,49 @@ npx cap sync
 
 <docgen-index>
 
+* [`checkPermissions()`](#checkpermissions)
+* [`requestPermissions()`](#requestpermissions)
 * [`startVPN(...)`](#startvpn)
 * [`stopVPN()`](#stopvpn)
+* [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
 
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
+### checkPermissions()
+
+```typescript
+checkPermissions() => Promise<PermissionStatus>
+```
+
+**Returns:** <code>Promise&lt;<a href="#permissionstatus">PermissionStatus</a>&gt;</code>
+
+--------------------
+
+
+### requestPermissions()
+
+```typescript
+requestPermissions() => Promise<PermissionStatus>
+```
+
+**Returns:** <code>Promise&lt;<a href="#permissionstatus">PermissionStatus</a>&gt;</code>
+
+--------------------
+
+
 ### startVPN(...)
 
 ```typescript
-startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }) => Promise<{ started: boolean; }>
+startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }) => Promise<void>
 ```
 
 | Param         | Type                                                                                             |
 | ------------- | ------------------------------------------------------------------------------------------------ |
 | **`options`** | <code>{ serverIP: string; serverPort: number; disallowedApp: string; excludeIP: string; }</code> |
-
-**Returns:** <code>Promise&lt;{ started: boolean; }&gt;</code>
 
 --------------------
 
@@ -39,11 +63,27 @@ startVPN(options: { serverIP: string; serverPort: number; disallowedApp: string;
 ### stopVPN()
 
 ```typescript
-stopVPN() => Promise<{ stopped: boolean; }>
+stopVPN() => Promise<void>
 ```
 
-**Returns:** <code>Promise&lt;{ stopped: boolean; }&gt;</code>
-
 --------------------
+
+
+### Interfaces
+
+
+#### PermissionStatus
+
+| Prop                | Type                                                        |
+| ------------------- | ----------------------------------------------------------- |
+| **`vpnConnection`** | <code><a href="#permissionstate">PermissionState</a></code> |
+
+
+### Type Aliases
+
+
+#### PermissionState
+
+<code>'prompt' | 'prompt-with-rationale' | 'granted' | 'denied'</code>
 
 </docgen-api>

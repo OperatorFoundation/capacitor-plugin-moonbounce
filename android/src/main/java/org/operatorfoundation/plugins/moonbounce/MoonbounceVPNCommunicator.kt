@@ -11,8 +11,6 @@ import org.operatorfoundation.moonbouncevpnservice.MoonbounceKotlin
 
 class MoonbounceVPNCommunicator {
     var vpnService: MoonbounceKotlin? = null
-    var stopVPNReturnValueKey = "vpnStopped"
-    var startVPNReturnValueKey = "vpnStarted"
     var startVPNIPKey = "serverIP"
     var startVPNPortKey = "serverPort"
     var startVPNDisallowedAppKey = "disallowedApp"
@@ -28,11 +26,6 @@ class MoonbounceVPNCommunicator {
         vpnService = MoonbounceKotlin(context, ipAddress, port, disallowedApp, excludeIP)
         val serviceName = async(Dispatchers.Default) { vpnService!!.startVPN() }
         serviceName.await() != null
-    }
-
-    fun prepareForVPNService()
-    {
-
     }
 
     fun stopVPN(): Boolean {
