@@ -5,6 +5,7 @@ import com.getcapacitor.*
 import com.getcapacitor.annotation.CapacitorPlugin
 import com.getcapacitor.annotation.Permission
 import com.getcapacitor.annotation.PermissionCallback
+import kotlinx.coroutines.*
 
 const val vpnPermissionAlias = "vpnConnection"
 const val vpnPluginName = "MoonbounceVPN"
@@ -26,9 +27,6 @@ class MoonbounceVPNPlugin : Plugin()
     var serverPort: Int? = null
     var disallowedApp: String? = null
     var excludeIP: String? = null
-
-//    override fun load() {
-//    }
 
     @PluginMethod
     fun startVPN(call: PluginCall)
